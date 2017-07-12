@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECMAScript5基础巩固</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+
+        //操作符
+        function Operator() {
+
+            //一元操作符
+            this.unaryOperator = function () {
+                //递增和递减
+                //借鉴自C
+
+                //一元加或减
+                var a = -10;
+                console.log(+a);//-10
+                var b = 'b';
+                console.log(+b);//NaN
+                var c = 10;
+                console.log(-c);//-10
+                var d = '10';
+                console.log(-d);//-10
+            };
+
+            //位操作符
+            this.bitwiseOperator = function () {
+
+            };
+
+            //布尔操作符
+            this.booleanOperator = function () {
+                //逻辑非
+
+                //双逻辑非
+                console.log(!!'blue');//true
+                console.log(!!NaN);//false
+
+                //逻辑与
+                //这里用und表示未定义的变量
+                console.log(null && und);//null
+                console.log(undefined && und);//undefined
+                console.log(NaN && und);//NaN
+                console.log(new Object() && true);//true
+                console.log(true && new Object());//Object {}
+                console.log(new Object() && new Object());//Object {} 第二个
+
+                //逻辑或
+                //这里也用und表示未定义的变量
+                console.log(new Object() || und);//Object {}
+                console.log(false || true);//true
+                console.log(new Object() || new Object());//Object {} 第一个
+                console.log(null || null);//null
+                console.log(NaN || NaN);//NaN
+                console.log(undefined || undefined);//undefined
+            };
+
+            //乘性操作符
+            this.multiplicativeOperator = function () {
+                //*
+                console.log(NaN * 1);//NaN
+                console.log(Infinity * 0);//NaN
+                console.log(Infinity * 1);//Infinity
+                console.log(Infinity * Infinity);//Infinity
+
+                ///
+                console.log(NaN / NaN);//NaN
+                console.log(Infinity / Infinity);//NaN
+                console.log(0 / 0);//NaN
+                console.log(1 / 0);//Infinity
+                console.log(Infinity / 1);//Infinity
+
+                //%
+                console.log(Infinity % 1);//NaN
+                console.log(1 % 0);//NaN
+                console.log(Infinity % Infinity);//NaN
+                console.log(1 % Infinity);//1
+                console.log(0 % 1);//0 只要被除数为0
+
+
+            };
+
+
+            //加性操作符
+            this.additiveOperator = function () {
+                //+
+                console.log(1 + 2);//3
+                console.log(NaN + 1);//NaN
+                console.log(+0 + +0);//+0
+                console.log(-0 + -0);//-0
+                console.log(+0 + -0);//+0
+                console.log(Infinity + Infinity);//Infinity
+                console.log(-Infinity + -Infinity);//-Infinity
+                console.log(+Infinity + -Infinity);//NaN
+                console.log(5 + '5');//'55'
+                console.log('abc' + 'd');//abcd
+                console.log('abc' + new Object());//abc[object Object]
+                console.log('abc' + new Boolean(true));//abctrue
+                console.log('abc' + undefined);//abcundefined
+                console.log('abc' + null);//abcnull
+
+                //-
+                console.log(2 - 1);//1
+                console.log(NaN - 1);//NaN
+                console.log(Infinity - Infinity);//NaN
+                console.log(-Infinity - -Infinity);//NaN
+                console.log(Infinity - -Infinity);//Infinity
+                console.log(-Infinity - Infinity);//-Infinity
+                console.log(+0 - +0);//+0
+                console.log(+0 - -0);//+0 有出入
+                console.log(-0 - -0);//+0
+                console.log('a' - 1);//NaN
+                console.log(new Boolean(true) - 1);//0
+                console.log(null - 1);//-1
+                console.log(undefined - 1);//NaN
+            }
+
+            //关系操作符
+            this.relationalOperator = function () {
+                //> < >= <=
+                console.log(3 > 2);//true
+                console.log('b' > 'A');//true 比较其对应的字符编码(ASCII码)
+                console.log('23' < '3');//true 因为是字符串，比较字符编码
+                console.log('a' < 3);//false 将'a'转换成了NaN
+                console.log(NaN > 1);//false
+            };
+
+            //相等操作符
+            this.equalOperator = function () {
+                console.log(null == undefined);//true
+                console.log(null == 0);//false
+                console.log(undefined == 0);//false
+                console.log(NaN == NaN);//false
+                console.log(false == 0);//true
+                console.log('5' == 5);//true
+                console.log(new Object() == 1);//false
+
+                var obj = new Object();
+                console.log(new Object() == new Object());//false
+                console.log(obj == obj);//true
+            };
+
+            //条件操作符
+            this.conditionalOperator = function () {
+                var num1 = 1, num2 = 2;
+                var max = (num1 > num2) ? num1 : num2;
+                console.log(max);//2
+            };
+
+            //逗号操作符
+            this.commaOperator = function () {
+                var num1 = 1, num2 = 2, num3 = 3;
+                var num = (5, 1, 4, 8, 0);
+                console.log(num);//0
+            };
+
+        }
+
+        //数据类型
+        function DataType() {
+
+            //Undefined
+            this.showUndefined = function () {
+                var message;
+                console.log(message);//'undefined'
+//                console.log(age);//ReferenceError
+            };
+
+            //Null
+            this.showNull = function () {
+                var car = null;
+                console.log(typeof car);//'object'
+                console.log(null == undefined);//true
+            };
+
+            //Boolean
+            this.showBoolean = function () {
+                //String
+                console.log(Boolean('abc'));//true
+                console.log(Boolean(''));//false
+                //Number
+                console.log(Boolean(1));//true
+                console.log(Boolean(Infinity));//true
+                console.log(Boolean(0));//false
+                console.log(Boolean(NaN));//false
+                //Object
+                console.log(Boolean(new Object()));//true
+                console.log(Boolean(null));//false
+                //Undefiend
+                console.log(Boolean(undefined));//false
+            }
+
+            //Number
+            this.showNumber = function () {
+                //八进制与十六进制
+                console.log(070);//56
+                console.log(0xA);//10
+
+                //浮点数
+                console.log(1.1);//1.1
+                console.log(1.);//1
+                console.log(.1);//0.1
+                console.log(3.125e7);//31250000
+
+                //数值范围
+                console.log(Number.MAX_VALUE);//1.7976931348623157e+308
+                console.log(Number.MIN_VALUE);//5e-324
+                console.log(isFinite(Number.MAX_VALUE + 0.1e+308));//false 注：超出范围不多时显示true
+                console.log(isFinite(NaN));//false
+
+                //NaN
+                console.log(NaN == NaN);//false
+
+                //isNaN
+                console.log(isNaN('a'));//true
+                //对于对象，依次调用valueOf()和toString()方法;
+
+                //数值转换
+                //Number
+                console.log(Number('hello world'));//NaN
+                console.log(Number(''));//0
+                console.log(Number('00011'));//11
+                console.log(Number(true));//1
+                //对于对象，依次调用valueOf()和toString()方法;
+
+                //parseInt()
+                console.log(parseInt('a123'));//NaN
+                console.log(parseInt('123a'));//123
+                console.log(parseInt(''));//NaN
+                console.log(parseInt(22.5));//22
+                console.log(parseInt(0xA));//10
+                console.log(parseInt('AF', 16));//175
+                console.log(parseInt('10', 2));//2
+
+                //parseFloat()
+                console.log(parseFloat('0xA'));//NaN
+                console.log(parseFloat('22.5'));//22.5
+
+                //基本包装类型
+                var num1 = 10.005;
+                var num2 = 10;
+                console.log(num1.toFixed(2));//'10.01'
+                console.log(num2.toFixed(2));//'10.00'
+                console.log(num2.toExponential(1));//'1.0e+1'
+            }
+
+            //String
+            this.showString = function () {
+                //转义字符
+                console.log('1\n2');//1(换行)2
+                console.log('\u03a0');//Π(希腊字符)
+
+                //转换为字符串
+                var num = 10;
+                console.log(num.toString());//'10'
+                console.log(num.toString(2));//'1010'
+                console.log(num.toString(8));//'12'
+                console.log(num.toString(10));//'10'
+                console.log(num.toString(16));//'a'
+
+                //基本包装类型扩展
+
+                //字符方法 charAt charCodeAt
+                var str = 'hello world';
+                console.log(str.charAt(1));//e
+                console.log(str.charCodeAt(1));//e
+                console.log(str[1]);//e
+
+                //字符串的操作
+                //concat 接受任意多个参数，但一般用 + 来实现
+                var str2 = 'hello ';
+                console.log(str2.concat('world'));//hello world
+                console.log(str2.concat('world','!'));//hello world!
+
+                //slice,substr,substring 返回子字符串
+                console.log(str.slice(3));//'lo world'
+                console.log(str.substring(3));//'lo world'
+                console.log(str.substr(3));//'lo world'
+                console.log(str.slice(3,7));//'lo w'
+                console.log(str.slice(3,7));//'lo w'
+                console.log(str.substring(3,7));//'lo w'
+                console.log(str.substr(3,7));//'lo worl'
+
+                console.log(str.slice(-3));//'rld'
+                console.log(str.substring(-3));//'hello world'
+                console.log(str.substr(-3));//'rld'
+                console.log(str.slice(3,-4));//'lo w'
+                console.log(str.substring(3,-4));//'hel' 即substring(0,3)
+                console.log(str.substr(3,-4));//'' 即substr(3,0)
+
+                //字符串的位置
+                console.log(str.indexOf('o'));//4
+                console.log(str.lastIndexOf('o'));//7
+                console.log(str.indexOf('o',6));//7
+                console.log(str.lastIndexOf('o',6));//4
+
+                //trim()
+                var str3 = '   hello world   ';
+                console.log(str3.trim());//hello world
+
+                //大小写转换
+                var str4 = 'HELLO world';
+                console.log(str4.toUpperCase());//'HELLO WORLD'
+                console.log(str4.toLocaleUpperCase());//'HELLO WORLD' 针对地区的方法（更稳妥）
+                console.log(str4.toLowerCase());//'hello world'
+                console.log(str4.toLocaleLowerCase());//'hello world'
+
+                //字符串的模式匹配
+                var text = 'cat,bat,sat,fat';
+                var pattern = /.at/;
+                console.log(text.match(pattern)[0]);//'cat' match返回一个数组
+                console.log(text.search(/at/));
+                console.log(text.replace('at','ond'));//'cond,bat,sat,fat'
+                console.log(text.replace(/at/g,'ond'));//'cond,bond,sond,fond'
+                //特殊字符序列 $n 匹配第n个捕获组的子字符串?
+                console.log(text.replace(/(.at)/g,'word($1)'));//'word(cat),word(bat),word(sat),word(fat)'
+                //replace第二个参数为函数 转义函数
+                var text2 = '<p class="greeting">hello world</p>';
+                console.log(text2.replace(/[<>"&]/g,function(match,pos,originalText){
+                    switch(match) {
+                        case '<' : return '&lt;';
+                        case '>' : return '&gt;';
+                        case '&' : return '&amp;';
+                        case '\"' : return '&quot;';
+                    }
+                }));
+                //&lt;p class=&quot;greeting&quot;&gt;hello world&lt;/p&gt;
+                //split()
+                var color = 'red,blue,green,yellow';
+                console.log(color.split(','));//["red", "blue", "green", "yellow"]
+                console.log(color.split(',',2));//["red", "blue"]
+                console.log(color.split(/[^\,]+/));//["", ",", ",", ",", ""] 注：分隔符为除逗号以外的字符
+
+                //localeCompare() 比较字符串在字母表中的排列顺序
+                var str5 = 'yellow';
+                console.log(str5.localeCompare('brick'));//1
+                console.log(str5.localeCompare('yellow'));//0
+                console.log(str5.   localeCompare('zoo'));//-1
+
+                //fromCharCode() String的方法 接收字符编码，转换成一个字符串
+                console.log(String.fromCharCode(104,101,108,108,111));//'hello'
+
+                //HMTL方法 尽量不使用
+            }
+
+            //Object
+            this.showObject = function () {
+//                var obj = new Object();
+//                console.log(obj.constructor);//构造函数
+//                console.log(obj.hasOwnProperty(propertyName));//检查属性是否在当前实例中
+//                console.log(obj.isPrototypeOf(object));//检查传入对象是否是当前对象的原型
+//                console.log(obj.propertyIsEnumerable(propertyName));//检查属性是否可枚举
+//                console.log(obj.toLocaleString());//
+//                console.log(obj.toString());//
+//                console.log(obj.valueOf());//
+
+                //示例如下
+                function NewObj () {
+                    this.name = 'newObj';
+                }
+
+                var newObj = new NewObj();
+                console.log(newObj);//NewObj {name: "newObj"}
+                console.log(NewObj);//function NewObj() {this.name = 'newObj';}
+                console.log(newObj.constructor);//function NewObj() {this.name = 'newObj';}
+                console.log(newObj.hasOwnProperty('name'));//true
+                console.log(NewObj.prototype);//Object {constructor: function}
+                console.log(NewObj.prototype.isPrototypeOf(newObj));//true
+                console.log(newObj.prototype);//undefined
+                console.log(newObj.__proto__);//Object {constructor: function}
+            }
+
+        }
+
+        var operator = new Operator();
+        operator.unaryOperator();
+        operator.booleanOperator();
+        operator.commaOperator();
+        operator.equalOperator();
+        operator.conditionalOperator();
+        operator.relationalOperator();
+        operator.additiveOperator();
+        operator.multiplicativeOperator();
+
+        var dataType = new DataType();
+        dataType.showUndefined();
+        dataType.showNull();
+        dataType.showBoolean();
+        dataType.showNumber();
+        dataType.showString();
+        dataType.showObject();
+
+        //ECMAScript typeof and instanceof
+        var obj = {};
+        var arr = [];
+        console.log(typeof 1);//'number'
+        console.log(typeof 'a');//'string'
+        console.log(typeof arr);//'object'
+        console.log(typeof obj);//'object'
+        console.log(typeof true);//'boolean'
+        console.log(typeof null);//'object'
+        console.log(typeof undefined);//'undefined'
+
+        console.log( 1 instanceof Number);//false
+        console.log( 'a' instanceof String);//false
+        console.log( arr instanceof Array);//true
+        console.log( true instanceof Boolean);//false
+        console.log( obj instanceof Object);//true
+        console.log( null instanceof Object);//false
+//        console.log( undefined instanceof undefined);
+    }
+</script>
+</body>
+</html>
