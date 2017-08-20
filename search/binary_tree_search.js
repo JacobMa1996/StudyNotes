@@ -70,6 +70,47 @@ class BST {
         }
 
     }
+
+    min(x) {
+        if (x.left == null) {
+            return x;
+        }
+        return min(x.left);
+    }
+
+    deleteMin(x) {
+        if (x.left == null) {
+            return x.right;
+        }
+        x.left = this.deleteMin(x.left);
+        x.N = this.size(x.left) + this.size(x.right) + 1;
+        return x;
+    }
+
+    delete(x, key) {
+        if (x == null) {
+            return null;
+        }
+        if (key < x.key) {
+            x.left = this.delete(x.left, key);
+        } else if (key > x.key) {
+            x.right = this.delete(x.right, key)
+        } else {
+            if (x.right == null) {
+                return x.left;
+            }
+            if (x.left == null) {
+                return x.right;
+            }
+            let t = new Node(x.key,x.val,x.N);
+            x = min(t.right);
+            x.right = this.deleteMin(t.right);
+            x.left = t.left;
+        }
+
+        x.N = this.size(x.left) + this.size(x.right) + 1;
+        return x;
+    }
 }
 
 let arr = ['A', 'B', 'G', 'D', 'W', 'T', 'E', 'H', 'I', 'U', 'L', 'X', 'Z'];
@@ -111,10 +152,10 @@ let root = new Node(arr[5], arr[5].charCodeAt(), 1);
 let bst = new BST(root);
 
 for (let i = 0; i < arr.length; i++) {
-    if(i == 5) {
+    if (i == 5) {
         continue;
     }
-    bst.put(root,arr[i],arr[i].charCodeAt());
+    bst.put(root, arr[i], arr[i].charCodeAt());
 }
 
 let k = root;
@@ -122,14 +163,20 @@ let k = root;
 //遍历二叉树
 function traverse(root) {
 
-        if(root == null) {
-            return;
-        }
+    if (root == null) {
+        return;
+    }
 
-        console.log(root);
+    console.log(root);
 
-        traverse(root.left);
-        traverse(root.right);
+    traverse(root.left);
+    traverse(root.right);
 }
 
+// traverse(k);
+
+
+console.log(bst.get(root,'H'));
+console.log(bst.delete(root,'H'));
+console.log(bst.get(root,'H'));
 traverse(k);
