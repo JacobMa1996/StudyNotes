@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>笔试练习</title>
+</head>
+<style>
+    /*body {*/
+    /*margin: 0;*/
+    /*}*/
+
+    /*.fn-clear:after {*/
+    /*content: " ";*/
+    /*clear: both;*/
+    /*display: block;*/
+    /*font-size: 0;*/
+    /*visibility: hidden;*/
+    /*height: 0;*/
+    /*}*/
+
+    /*.fn-clear {*/
+    /*zoom: 1;*/
+    /*}*/
+
+    /*.container {*/
+    /*padding: 10px;*/
+    /*}*/
+
+    /*.header {*/
+    /*background: #eee;*/
+    /*position: relative;*/
+    /*margin-bottom: 10px;*/
+    /*}*/
+
+    /*.logo {*/
+    /*width: 100px;*/
+    /*height: 100px;*/
+    /*float: left;*/
+    /*background: #f60;*/
+    /*}*/
+
+    /*.username {*/
+    /*position: absolute;*/
+    /*right: 10px;*/
+    /*bottom: 10px;*/
+    /*}*/
+
+    /*.main {*/
+    /*margin-bottom: 10px;*/
+    /*}*/
+
+    /*.side-bar {*/
+    /*width: 200px;*/
+    /*float: right;*/
+    /*background: #ccc;*/
+    /*}*/
+
+    /*.content {*/
+    /*margin-right: 200px;*/
+    /*background: #f6f6f6;*/
+    /*}*/
+
+    /*.footer {*/
+    /*background: #999;*/
+    /*}*/
+
+    /*.container {*/
+        /*height: 300px;*/
+        /*position: relative;*/
+    /*}*/
+
+    /*.item {*/
+        /*position: absolute;*/
+        /*bottom: 0;*/
+        /*height: 100%;*/
+        /*width: 30px;*/
+    /*}*/
+
+    /*.A {*/
+        /*background: #f00;*/
+        /*height: 30%;*/
+        /*left: 0;*/
+    /*}*/
+
+    /*.B {*/
+        /*background: #ddd;*/
+        /*height: 80%;*/
+        /*left: 40px;*/
+    /*}*/
+
+    /*.C {*/
+        /*background: #0fd;*/
+        /*height: 70%;*/
+        /*left: 80px;*/
+    /*}*/
+
+    /*.D {*/
+        /*background: #ff0;*/
+        /*height: 60%;*/
+        /*left: 120px;*/
+    /*}*/
+
+    /*.E {*/
+        /*background: #234;*/
+        /*height: 90%;*/
+        /*left: 160px;*/
+    /*}*/
+
+    /*.container {*/
+        /*display: flex;*/
+        /*justify-content: space-between;*/
+        /*align-items: flex-end;*/
+        /*width: 300px;*/
+        /*height: 300px;*/
+    /*}*/
+
+    /*.item {*/
+        /*background: #000;*/
+        /*width: 30px;*/
+    /*}*/
+
+    /*.A {*/
+        /*background: #f00;*/
+        /*height: 30%;*/
+    /*}*/
+
+    /*.B {*/
+        /*background: #ddd;*/
+        /*height: 80%;*/
+    /*}*/
+
+    /*.C {*/
+        /*background: #0fd;*/
+        /*height: 70%;*/
+    /*}*/
+
+    /*.D {*/
+        /*background: #ff0;*/
+        /*height: 60%;*/
+    /*}*/
+
+    /*.E {*/
+        /*background: #234;*/
+        /*height: 90%;*/
+    /*}*/
+
+    .align-sl {
+        height:30px;
+        line-height:30px;
+        text-align: center;
+    }
+
+    .align-ml-box {
+        width:200px;
+        height:200px;
+    }
+
+</style>
+<body>
+
+<div class="align-sl">
+    这是单行文字水平垂直居中
+</div>
+
+
+<div class="align-ml-box">
+        <div class="align_ml-word">
+                文字垂直居中对齐文字垂直居中对齐文字垂直居中对齐
+        </div>
+</div>
+
+<script>
+
+</script>
+
+<!--<div class="container">-->
+<!--<div class="header fn-clear">-->
+<!--<div class="logo">logo</div>-->
+<!--<div class="username">zhoumingXXX@163.com</div>-->
+<!--</div>-->
+<!--<div class="main">-->
+<!--<div class="side-bar">menu-->
+<!--</div>-->
+<!--<div class="content">左侧内容</div>-->
+<!--</div>-->
+<!--<div class="footer">-->
+<!--footer-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+    <!--<div class="item A"></div>-->
+    <!--<div class="item B"></div>-->
+    <!--<div class="item C"></div>-->
+    <!--<div class="item D"></div>-->
+    <!--<div class="item E"></div>-->
+<!--</div>-->
+
+<!--<div class=""></div>-->
+
+<!--<script>-->
+
+    <!--window.onload = function () {-->
+
+<!--//        var foo = {n:1};-->
+<!--//        (function(foo) {-->
+<!--//            console.log(foo.n);-->
+<!--//            foo.n = 3;-->
+<!--//            var foo = {n:2};-->
+<!--//            console.log(foo.n);-->
+<!--//        })(foo);-->
+<!--//-->
+<!--//        console.log(foo.n);-->
+
+<!--//        (function() {-->
+<!--//            var a = b = 5;-->
+<!--//            console.log(a);-->
+<!--//        })();-->
+<!--//        console.log(b);-->
+<!--//        console.log(a);-->
+    <!--};-->
+
+    <!--//    var str = 'ab';-->
+    <!--//-->
+    <!--//    function operate(str, pos, len) {-->
+    <!--//        var subStr = str.slice(pos, pos + len);-->
+    <!--//        subStr = subStr.split("").reverse().join("");-->
+    <!--//        var newStr = str.slice(0, pos + len) + subStr + str.slice(pos + len);-->
+    <!--//        return newStr;-->
+    <!--//    }-->
+    <!--//-->
+    <!--//    function decode(str, n, arr) {-->
+    <!--//        for (var i = 0; i < n; i++) {-->
+    <!--//            str = operate(str, arr[i][0], arr[i][1]);-->
+    <!--//        }-->
+    <!--//        return str;-->
+    <!--//    }-->
+    <!--//-->
+    <!--//    console.log(decode(str, 2, [[0, 2], [1, 3]]));-->
+
+
+    <!--//    var obj = {-->
+    <!--//        a: 1, b: function () {-->
+    <!--//            alert(this.a);-->
+    <!--//        }-->
+    <!--//    }-->
+    <!--//-->
+    <!--//    var fun = obj.b;-->
+    <!--//    fun();-->
+
+    <!--//    console.log(1 == true);-->
+
+    <!--//    function isAdult(date) {-->
+    <!--//-->
+    <!--//        let nowTime = new Date(Date.now());-->
+    <!--//-->
+    <!--//        let nowYear = nowTime.getFullYear(),-->
+    <!--//            nowMonth = nowTime.getMonth(),-->
+    <!--//            nowDate = nowTime.getDate();-->
+    <!--//-->
+    <!--//        let birthYear = date.getFullYear(),-->
+    <!--//            birthMonth = date.getMonth(),-->
+    <!--//            birthDate = date.getDate();-->
+    <!--//-->
+    <!--//        if(nowYear - birthYear >= 18 && nowMonth >= birthMonth && nowDate >= birthDate) {-->
+    <!--//            return true;-->
+    <!--//        }else {-->
+    <!--//            return false;-->
+    <!--//        }-->
+    <!--//    }-->
+    <!--//-->
+    <!--//    let date = new Date('1999-08-28');-->
+    <!--//-->
+    <!--//    console.log(isAdult(date));-->
+
+    <!--function obj(name) {-->
+        <!--if (name) {-->
+            <!--return {name: name};-->
+        <!--}-->
+    <!--}-->
+
+    <!--obj.prototype.name = 'name2';-->
+
+    <!--var a = obj('name1');-->
+    <!--var b = new obj;-->
+
+    <!--console.log(a.name);-->
+    <!--console.log(b.name);-->
+
+    <!--function sum() {-->
+
+        <!--let num = 0;-->
+
+        <!--for (let i = 0; i < arguments.length; i++) {-->
+
+            <!--let digit = 0;-->
+
+            <!--try {-->
+                <!--n = arguments[i].toString().split('.')[1].length;-->
+            <!--} catch (e) {-->
+                <!--n = 0;-->
+            <!--}-->
+
+            <!--if (digit < n) {-->
+                <!--digit = n;-->
+            <!--}-->
+
+        <!--}-->
+
+        <!--let m = Math.pow(10, n);-->
+
+        <!--for (let i = 0; i < arguments.length; i++) {-->
+
+            <!--if (arguments[i] === true) {-->
+                <!--arguments[i] = 0;-->
+            <!--}-->
+
+            <!--if (isNaN(Number(arguments[i]))) {-->
+                <!--arguments[i] = 0;-->
+            <!--}-->
+
+            <!--num += arguments[i] * m;-->
+        <!--}-->
+
+        <!--return num / m;-->
+    <!--}-->
+
+    <!--console.log(sum('1.0', false, 1, true, 1, 'A', 1, 'B', 1, 'C', 1, 'D', 1,-->
+        <!--'E', 1, 'F', 1, 'G', 1));-->
+
+    <!--let object = {-->
+        <!--b: {c: 4},-->
+        <!--d: [{e: 5}, {e: 6}]-->
+    <!--};-->
+
+    <!--function parse(obj, str) {-->
+
+        <!--let subPos = 0;-->
+        <!--let strArr = str.split('');-->
+        <!--let value = obj;-->
+
+        <!--while (subPos < str.length) {-->
+
+            <!--if (strArr[subPos] === '.') {-->
+
+                <!--subPos++;-->
+                <!--value = value[strArr[subPos]];-->
+                <!--subPos++;-->
+
+            <!--} else if (strArr[subPos] === '[') {-->
+
+                <!--subPos++;-->
+                <!--value = value[strArr[subPos]];-->
+                <!--subPos += 2;-->
+            <!--} else {-->
+
+                <!--value = value[strArr[subPos]];-->
+                <!--subPos++;-->
+            <!--}-->
+
+            <!--if (value === undefined) {-->
+                <!--return 'undefined';-->
+            <!--}-->
+
+        <!--}-->
+
+        <!--return value;-->
+
+    <!--}-->
+
+    <!--//好方法-->
+    <!--function parse(obj, str) {-->
+        <!--str.replace('[', '.').replace(']', '').split('.').map((ele) => obj = obj[ele.trim()]);-->
+        <!--return obj || 'undefined';-->
+    <!--}-->
+
+    <!--console.log(parse(object, 'b.c'));-->
+    <!--console.log(parse(object, 'd[0].e'));-->
+    <!--console.log(parse(object, 'd.0.e'));-->
+    <!--console.log(parse(object, 'd[1].e'));-->
+    <!--console.log(parse(object, 'd.1.e'));-->
+
+    <!--let c = [1, 2, 3];-->
+    <!--let d = [1, 2, 3];-->
+
+    <!--console.log(a == b);-->
+
+
+<!--</script>-->
+</body>
+</html>

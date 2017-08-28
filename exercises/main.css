@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+img {
+    width:150px;
+    height:100px;
+}
+
+.item {
+    margin: 2em auto;
+    padding: 50px;
+    border-top: 10px solid #eee;
+    border-bottom: 10px solid #eee;
+    /*text-align: center;*/
+}
+
+/*start*/
+.item > div {
+    border: 1px solid #999;
+}
+
+.align-sl-box {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 300px;
+    /*margin: auto;*/
+}
+
+.align-ml-box1 {
+    width: 200px;
+    padding: 50px;
+    /*margin: auto;*/
+}
+
+.align-ml-word1 {
+
+}
+
+.align-ml-box2 {
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 50px;
+}
+
+.align-ml-word2 {
+    display: inline-block;
+}
+
+.align-ml-box3 {
+    line-height: 200px;
+    width: 200px;
+    padding: 0 50px;
+
+}
+
+.align-ml-word3 {
+    display: inline-block;
+    line-height: 1.4em;
+    vertical-align: middle;
+}
+
+.align-ml-box3 > i {
+    display: inline-block;
+    font-size: 0;
+    width: 0;
+    vertical-align: middle;
+}
+
+.ver-pic {
+    width:200px;
+    height:200px;
+    text-align: center;
+    line-height:200px;
+    font-size: 0;/*消除middle假居中的误差*/
+}
+
+.ver-pic > img {
+    vertical-align: middle;
+}
+
+
+
