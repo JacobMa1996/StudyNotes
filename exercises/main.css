@@ -8,8 +8,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 img {
-    width:150px;
-    height:100px;
+    width: 150px;
+    height: 100px;
 }
 
 .item {
@@ -78,16 +78,31 @@ img {
 }
 
 .ver-pic {
-    width:200px;
-    height:200px;
+    width: 200px;
+    height: 200px;
     text-align: center;
-    line-height:200px;
-    font-size: 0;/*消除middle假居中的误差*/
+    line-height: 200px;
+    font-size: 0; /*消除middle假居中的误差*/
 }
 
 .ver-pic > img {
     vertical-align: middle;
 }
 
+.self-adaption {
+    height:200px;
+}
 
+.sa-left {
+    height:100%;
+    width: 200px;
+    float: left;
+    background: #40b157;
+}
+
+.sa-right {
+    height:100%;
+    margin-left: 200px;
+    background: #999999;
+}
 
