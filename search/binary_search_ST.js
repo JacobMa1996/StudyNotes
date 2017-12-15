@@ -7,33 +7,27 @@ const rl = readline.createInterface({
 });
 
 
-let arr = ['A', 'B', 'G', 'D', 'W', 'T', 'E', 'H', 'I', 'U', 'L', 'X', 'Z'];
-
-console.log(binarySearch(arr, 5));
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function binarySearch(arr, key) {
 
-    let mid = rank(key, 0, arr.length - 1);
+    let start = 0,
+        end = arr.length - 1;
 
-    return arr[mid];
+    while (start <= end) {
+        let mid = start + parseInt((end - start) / 2);
+
+        if (key == arr[mid]) {
+            return mid;
+        } else if (key > arr[mid]) {
+            start = mid + 1;
+        } else if (key < arr[mid]) {
+            end = mid - 1;
+        } else {
+            return -1;
+        }
+    }
 
 }
 
-function rank(key, lo, hi) {
-
-    if (lo >= hi) {
-        return lo;
-    }
-
-    let mid = lo + parseInt((hi - lo) / 2);
-
-    if (key < mid) {
-        return rank(key, lo, mid - 1);
-    } else if (key > mid) {
-        return rank(key, mid + 1, hi);
-    } else {
-        return mid;
-    }
-
-
-}
+console.log(binarySearch(arr, 5));

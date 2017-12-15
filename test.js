@@ -11,9 +11,8 @@ const rl = readline.createInterface({
 
 rl.on('line',function(data) {
 
-    console.log(typeof data);
+
 
 });
 
 
-console.log('93' > '936');
