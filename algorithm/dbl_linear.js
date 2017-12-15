@@ -1,36 +1,40 @@
-function dbl_linear(n) {
+function dblLinear(n) {
     var u = [1];
-    
-    while (u.length < n) {
-        var len = u.length;
-        for (var i = 0; i < len; i++) {
-            var x = 2 * u[i] + 1,
-                y = 3 * u[i] + 1;
-    
-            var w = u.join();
-            w = `,${w},`;
-            console.log(w);
-            // var  reg1 = new RegExp(`^${x}$`, 'g');
-            // var  reg2 = new RegExp(`^${y}$`, 'g');
-
-            // console.log(reg1);
-
-            if (w.indexOf(`,${x},`) < 0) {
-                u.push(x);
+    var index = 1,
+        i = 0,
+        j = 0;
+    var w = '';
+    Array.prototype.contains = function (obj) {  
+        var i = this.length;  
+        while (i--) {  
+            if (this[i] === obj) {  
+                return true;  
+            }  
+        }  
+        return false;  
+    }  
+    while (index < n + 1) {
+        var x = 2 * u[i] + 1;
+        var y = 3 * u[j] + 1;
+        // w = `,${u.join()},`;
+        // console.log(w);
+        if (x < y) {
+            // var x1 = `,${x},`;
+            if (!u.contains(x)) {
+                u[index++] = x;   
             }
-    
-            if (w.indexOf(`,${y},`) < 0) {
-                u.push(y);
+            i++;
+
+        } else {
+            // var y1 = `,${y},`;
+            if (!u.contains(y)) {
+                u[index++] = y;
             }
+            j++;
         }
-    
-        
     }
-    
-    u.sort(function(a, b) {
-        return a - b
-    })
-    console.log(u);
-    return u[n];
+
+    return u[index - 1];
 }
-console.log(dbl_linear(30));
+
+console.log(dblLinear(60000));
