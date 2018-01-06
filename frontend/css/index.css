@@ -7,10 +7,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-img {
+/* img {
     width: 150px;
     height: 100px;
-}
+} */
 
 .item {
     margin: 2em auto;
@@ -52,7 +52,13 @@ img {
 }
 
 #display p {
-    margin-left: 0.5em
+    margin-left: 0.5em;
+    color: rgb(45, 136, 18)
+}
+
+#display p > img {
+    vertical-align: top;
+    max-width: 100%
 }
 
 #display .dis-item {
@@ -87,10 +93,10 @@ img {
 }
 
 #display .dis-inline-table {
-    display: table;
+    display: inline-table;
 }
 
-#display .table-row-group {
+#display .dis-table-row-group {
     display: table-row-group;
 }
 
