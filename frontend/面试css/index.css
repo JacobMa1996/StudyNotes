@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+img {
+    width: 150px;
+    height: 100px;
+}
+
+.item {
+    margin: 2em auto;
+    padding: 50px;
+    border-top: 10px solid #eee;
+    border-bottom: 10px solid #eee;
+    /*text-align: center;*/
+}
+
+.item > div {
+    border: 1px solid #999;
+}
+
+/* start */
+#position h3 {
+    text-align: left
+}
+
+#position .pos-left {
+    position: relative;
+    left: -20px
+}
+
+#position .pos-right {
+    position: relative;
+    left: 20px
+}
+
+#position .pos-abs {
+    position: absolute; 
+    left: 200px; 
+    top: 320px
+}
+
+#position .pos-fixed {
+    position: fixed; 
+    left: 50px; 
+    top: 380px
+}
+
+#display p {
+    margin-left: 0.5em
+}
+
+#display .dis-item {
+    background: #eee; 
+    margin: 0.5em;
+}
+
+#display .dis-block {
+    display: block;
+    text-align: justify
+}
+
+#display .dis-inline {
+    display: inline;
+}
+
+#display .dis-inline-block {
+    display: inline-block;
+}
+
+#display .dis-list-item {
+    display: list-item;
+    /* list-style: disc outside none; */
+}
+
+#display .dis-run-in {
+    display: run-in;
+}
+
+#display .dis-table {
+    display: table;
+}
+
+#display .dis-inline-table {
+    display: table;
+}
+
+#display .table-row-group {
+    display: table-row-group;
+}
+
+#display .dis-table-row {
+    display: table-row;
+}
+
+#display .dis-table-column-group {
+    display: table-column-group;
+}
+
+#display .dis-table-column {
+    display: table-column;
+}
+
+#display .dis-table-cell {
+    display: table-cell;
+}
+
+#display .dis-table-caption {
+    display: table-caption;
+}

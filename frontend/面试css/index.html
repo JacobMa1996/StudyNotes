@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>CSS晋升基础</title>
+</head>
+
+<body>
+    <!-- 
+        position
+        这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移。
+
+        absolut: 生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+
+        fixed: 生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+
+        relative: 生成相对定位的元素，相对于其正常位置进行定位。因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。
+
+        static: 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
+
+        inherit: 规定应该从父元素继承 position 属性的值。
+     -->
+
+    <div id="position" class="item">
+
+        <h2>CSS position</h2>
+        <h3>1.relative</h3>
+        <p>这是位于正常位置的标题</p>
+        <p class="pos-left">这个标题相对于其正常位置向左移动</p>
+        <p class="pos-right">这个标题相对于其正常位置向右移动</p>
+
+        <h3>2.absolute</h3>
+        <p class="pos-abs">这是对决定位的标题</p>
+
+        <h3>3.fixed</h3>
+        <p class="pos-fixed">这是固定定位的标题</p>
+    </div>
+
+    <!-- 
+        display
+        属性规定元素应该生成的框的类型。
+
+        none: 此元素不会被显示。
+        block: 此元素将显示为块级元素，此元素前后会带有换行符。
+        inline: 默认。此元素会被显示为内联元素，元素前后没有换行符。
+        inline-block: 行内块元素。（CSS2.1 新增的值）
+        list-item: 此元素会作为列表显示。
+        run-in: 此元素会根据上下文作为块级元素或内联元素显示。
+        compact: CSS 中有值 compact，不过由于缺乏广泛支持，已经从 CSS2.1 中删除。
+        marker: CSS 中有值 marker，不过由于缺乏广泛支持，已经从 CSS2.1 中删除。
+        table: 此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。
+        inline-table: 此元素会作为内联表格来显示（类似 <table>），表格前后没有换行符。
+        table-row-group: 此元素会作为一个或多个行的分组来显示（类似 <tbody>）。
+        table-header-group: 此元素会作为一个或多个行的分组来显示（类似 <thead>）。
+        table-footer-group: 此元素会作为一个或多个行的分组来显示（类似 <tfoot>）。
+        table-row: 此元素会作为一个表格行显示（类似 <tr>）。
+        table-column-group: 此元素会作为一个或多个列的分组来显示（类似 <colgroup>）。
+        table-column: 此元素会作为一个单元格列显示（类似 <col>）
+        table-cell: 此元素会作为一个表格单元格显示（类似 <td> 和 <th>）
+        table-caption: 此元素会作为一个表格标题显示（类似 <caption>）
+        inherit: 规定应该从父元素继承 display 属性的值。
+
+     -->
+
+    <div id="display" class="item">
+
+        <h2>CSS display</h2>
+
+        <div class="dis-item dis-block">
+            display: block
+        </div>
+        <p>说明：设置元素为块状元素，如果不指定宽高，默认会继承父元素的宽度，并且独占一行，即使宽度有剩余也会独占一行，高度一般以子元素撑开的高度为准，当然也可以自己设置宽度和高度。
+            html、body和div的高度都设置100%可以将div的高度撑满整个屏幕
+        </p>
+        <div class="dis-item dis-inline">
+            display: inline 
+        </div>
+        <p>说明：CSS 1 提出的属性，它主要用来设置行内元素属性，设置了该属性之后设置高度、宽度都无效，同时text-align属性设置也无效，但是设置了line-height会让inline元素居中</p>
+        <div class="dis-item dis-inline-block">
+            display: inline-block
+        </div>
+        <div class="dis-item">
+            <span class="dis-list-item">display: list-item</span>
+            <span class="dis-list-item">display: list-item</span>
+            <span class="dis-list-item">display: list-item</span>
+        </div>
+        <div class="dis-item dis-run-in">
+            display: run-in
+        </div>
+        <div class="dis-item dis-table">
+            display: table
+        </div>
+        <div class="dis-item dis-inline-table">
+            display: inline-table
+        </div>
+        <div class="dis-item dis-table-row-group">
+            display: table-row-group
+        </div>
+        <div class="dis-item dis-table-header-group">
+            display: table-header-group
+        </div>
+        <div class="dis-item dis-table-footer-group">
+            display: table-footer-group
+        </div>
+        <div class="dis-item dis-table-row">
+            display: table-row
+        </div>
+        <div class="dis-item dis-table-column-group">
+            display: table-column-group
+        </div>
+        <div class="dis-item dis-table-column">
+            display: table-column
+        </div>
+        <div class="dis-item dis-table-cell">
+            display: table-cell
+        </div>
+        <div class="dis-item dis-table-caption">
+            display: table-caption
+        </div>
+    </div>
+</body>
+
+</html>
