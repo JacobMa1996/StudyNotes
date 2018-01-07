@@ -138,6 +138,77 @@
             display: table-caption
         </div>
     </div>
+
+    <div id="visibility" class="item">
+        <h2>visibility和display的区别</h2>
+        <p>
+            1.是否是继承属性：display不是继承属性，而visibility是继承属性，后代元素的visibility属性若存在则不会继承，若不存在则继承父元素visibility的值，意味着：父元素的visibility为hidden但是子元素的visibility为visible则子元素依旧可见，子元素visibility不存在则子元素不可见。而元素的display属性设为none其后整棵子树都不可见。
+            <br>
+            <br> 2.是否占据空间：使用display:none，在文档渲染时，该元素如同不存在（但依然存在文档对象模型树中）；而使用visibility:hidden，其占的空间会被空白占位。即一个（display:none）不会在渲染树中出现，一个（visibility:hidden）会。
+            <br>
+            <br> 3.页面相关属性改值后是否重新渲染：visibility :hidden不渲染；display:none渲染。
+            <br>
+            <br>
+            参考：<a href="https://www.jianshu.com/p/da8e9fba48b7">https://www.jianshu.com/p/da8e9fba48b7</a>
+        </p>
+    </div>
+
+    <div id="box-model" class="item">
+        <h2>盒模型</h2>
+        <p>
+            盒模型分为W3C标准盒模型和IE盒模型
+            <br> W3C标准和模型：content area 、 padding area 、 bodrer area 和 margin area，其中，width为content area的值
+            <br> IE盒模型：区别在于 width 包含了border area 、padding area 和 content area。
+            <br>
+            <img src="../img/box_model.png" alt="">
+            <br> 说明：其实IE的盒模型问题只会出现在IE5.5及其更早的版本中，但事实上不仅IE5.5，连IE6的使用率也很少了，这里对他们进行讨论只是为了更深刻的理解盒模型。
+        </p>
+    </div>
+
+    <div id="box-sizing" class="item">
+        <h2>CSS box-sizing</h2>
+        <img src="../img/box_sizing.png" alt="">
+        <br> 说明：当我们使用box-sizing: border-box时，可以使元素的宽高避免因padding和boder的大小而发生变化
+    </div>
+
+    <div id="pseudo-elements" class="item">
+        <h2>CSS 伪元素、伪类</h2>
+
+        <img src="../img/pseudo_class.png" alt="">
+        <br>
+        当然，CSS伪类远不止这几种，还包括:not(), nth-child()等;
+        具体参考MDN文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes">https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes</a>
+        <br>
+        <img src="../img/pseudo_elements.png" alt="">
+        <br> 这里可以说一下CSS伪元素中content属性 <br>
+        content属性值比较多，常见的用法是：
+        string、url <br>
+        更多用法包括，unicode几何图形、counter计数器、attr(x)等 <br>
+        比如：
+        <p class="light">灯泡(unicode几何图形)</p>
+
+        伪类、伪元素具体用法：<a href="https://www.cnblogs.com/ghost-xyx/p/3763669.html">https://www.cnblogs.com/ghost-xyx/p/3763669.html</a>
+        <br>
+        MDN CSS Content 文档： <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/content">https://developer.mozilla.org/zh-CN/docs/Web/CSS/content</a>
+    </div>
+
+    <div id="css-priority" class="item">
+        <h2>CSS selector priority</h2>
+        !important：优先级最高（但是也可以覆盖，同为!important，选择器权值更高的会覆盖其他的），一般避免使用 <br>
+        <p class="green">权值比较</p>
+        内联样式： 1000 <br>
+        id选择器: 100 <br>
+        class选择器：10 <br>
+        HTML标签选择器：10 <br>
+    </div>
+
+    <div id="transparent-background" class="item">
+        <h2>透明背景div 兼容ie7</h2>
+        <div class="transparent-background">
+            <p>这里面的背景透明</p>
+        </div>
+    </div>
+
 </body>
 
 </html>

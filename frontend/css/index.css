@@ -12,6 +12,10 @@ h1, h2, h3, h4, h5, h6 {
     height: 100px;
 } */
 
+.green {
+    color: rgb(45, 136, 18)
+}
+
 .item {
     margin: 2em auto;
     padding: 50px;
@@ -56,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(45, 136, 18)
 }
 
-#display p > img {
+.item  img {
     vertical-align: top;
     max-width: 100%
 }
@@ -118,4 +122,12 @@ h1, h2, h3, h4, h5, h6 {
 
 #display .dis-table-caption {
     display: table-caption;
+}
+
+#pseudo-elements p.light:after {
+    content: '\1f4a1';
+}
+
+#transparent-background .transparent-background {
+    background: rgba(0,0,0,0.1)
 }
