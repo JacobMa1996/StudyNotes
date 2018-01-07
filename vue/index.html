@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Vue</title>
+    <style>
+        .todo-status {
+            padding-left: 0
+        }
+
+        .todo-status li {
+            display: inline-block;
+            padding: 10px 20px
+        }
+
+        .todo-status li.active {
+            background: #000;
+            color: #fff
+        }
+
+        .todo-list li.completed {
+            text-decoration: line-through
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="todo-project">
+        <ul class="todo-list">
+            <todo-item v-if="isShow(item.status)" v-for="(item, index) in todos" :title="item.title" :id="item.id" :status="item.status" @remove="remove(index)"
+                @change="change(index)" :class="item.status == 2 ? 'completed' : ''"></todo-item>
+        </ul>
+        <input type="text" v-model="todoInput">
+        <input type="button" @click="add()" value="new">
+        <ul class="todo-status">
+            <li v-for="(item, index) in tabs" :class="item.active ? 'active' : ''" @click="changeTab(index)">{{item.title}}</li>
+        </ul>
+    </div>
+
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script src="./vue.min.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            template: '<li @click="$emit(\'change\')">{{ title }}<button @click="$emit(\'remove\')">X</button></li>',
+            props: ['title']
+        })
+        new Vue({
+            el: '#todo-project',
+            data() {
+                return {
+                    todoInput: '',
+                    newTodoId: 4,
+                    tab: 'All', 
+                    /* status 1=active 2=completed */
+                    todos: [{
+                        id: 1,
+                        title: '代办项1111111',
+                        status: 1
+                    }, {
+                        id: 2,
+                        title: '这个也是一个代办项',
+                        status: 2
+                    }, {
+                        id: 3,
+                        title: '这是第三个代办项',
+                        status: 1
+                    }], 
+                    tabs: [{
+                        title: 'All', 
+                        active: true
+                    }, {
+                        title: 'Active', 
+                        active: false
+                    }, {
+                        title: 'Completed', 
+                        active: false
+                    }]
+                }
+            },
+            methods: {
+                isShow(status) {
+                    if(this.tab == 'All') {
+                        return true;
+                    }else if(this.tab == 'Active' && status == 1) {
+                        return true;
+                    }else if(this.tab == 'Completed' && status == 2){
+                        return true;
+                    }
+                    return false;
+                },
+                change(index) {
+                    let status = this.todos[index].status;
+                    this.todos[index].status = (status == 1) ? 2 : 1;
+                },
+                changeTab(index){
+                    this.tabs.forEach(val => {
+                        val.active = false;
+                    })
+                    this.tabs[index].active = true;
+                    this.tab = this.tabs[index].title;
+                },
+                remove(index) {
+                    this.todos.splice(index, 1);
+                    this.newTodoId--;
+                },
+                add() {
+                    if (!this.todoInput) {
+                        alert('请输入内容');
+                        return false;
+                    }
+                    this.todos.push({
+                        id: this.newTodoId++,
+                        title: this.todoInput
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
