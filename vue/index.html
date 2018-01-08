@@ -32,8 +32,15 @@
 
     <div id="todo-project">
         <ul class="todo-list">
-            <todo-item v-if="isShow(item.status)" v-for="(item, index) in todos" :title="item.title" :id="item.id" :status="item.status" @remove="remove(index)"
-                @change="change(index)" :class="item.status == 2 ? 'completed' : ''"></todo-item>
+            <todo-item 
+            v-show="isShow(item.status)" 
+            v-for="(item, index) in todos" 
+            :key="item.id" 
+            :title="item.title"
+            :class="item.status == 2 ? 'completed' : ''"
+            @change="change(index)" 
+            @remove="remove(index)"
+            ></todo-item>
         </ul>
         <input type="text" v-model="todoInput">
         <input type="button" @click="add()" value="new">
@@ -46,10 +53,10 @@
     <script src="./vue.min.js"></script>
     <script>
         Vue.component('todo-item', {
-            template: '<li @click="$emit(\'change\')">{{ title }}<button @click="$emit(\'remove\')">X</button></li>',
+            template: '<li @click="$emit(\'change\')">{{ title }}<button @click="function(e){e.stopPropagation();$emit(\'remove\')}">X</button></li>', //必须组织冒泡，否则会执行两个click而报错
             props: ['title']
         })
-        new Vue({
+        window.vm = new Vue({
             el: '#todo-project',
             data() {
                 return {
@@ -106,7 +113,6 @@
                 },
                 remove(index) {
                     this.todos.splice(index, 1);
-                    this.newTodoId--;
                 },
                 add() {
                     if (!this.todoInput) {
@@ -115,7 +121,8 @@
                     }
                     this.todos.push({
                         id: this.newTodoId++,
-                        title: this.todoInput
+                        title: this.todoInput, 
+                        status: 1
                     })
                 }
             }
