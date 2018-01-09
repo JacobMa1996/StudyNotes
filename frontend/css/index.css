@@ -129,5 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #transparent-background .transparent-background {
-    background: rgba(0,0,0,0.1)
+    background: #000;
+    filter: alpha(opacity=50);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
