@@ -13,9 +13,16 @@ html, body {
     
 }
 
+@media (max-width: 767px ) {
+    .container {
+        padding: 30px
+    }
+}
+
 .loading-box {
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    flex-wrap: wrap
 }
 
 .loading {
