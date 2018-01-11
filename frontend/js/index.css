@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    padding: 0
+}
+
+.notice {
+    font-style: italic
+}
+
+/* img {
+    width: 150px;
+    height: 100px;
+} */
+
+img {
+    max-width: 100%
+}
+.green {
+    color: rgb(45, 136, 18)
+}
+
+.item {
+    /* margin: 2em auto; */
+    padding: 50px;
+    border-top: 10px solid #eee;
+    /* border-bottom: 10px solid #eee; */
+    /*text-align: center;*/
+}
+
+.item > div {
+    /* border: 1px solid #999; */
+}
