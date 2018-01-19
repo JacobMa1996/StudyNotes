@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="./index.css">
     <title>JS晋升基础</title>
 </head>
+
 <body>
     <div class="container">
         <div class="item">
@@ -17,23 +19,153 @@
             <p> string: 16位Unicode字符组成的字符序列 </p>
             <p> object: 对象 一组数据和功能的集合，其数据结构定义在堆区，引用变量在栈区，故也称为“引用类型” </p>
             <br>
-            <p class="notice green"> <span class="green">说明：</span> 引用类型有很多种，Object(不是上面的数据类型,是所有引用类型的基础，其他所有类型都从Object继承了基本的行为), Array, Date, RegExp, Function, 基本包转类型等</p>
-            <p class="notice green"> Date属于引用类型中的Date类型，函数属于引用类型中的Function类型，但其数据结构，最终都基于object类型 </p>
+            <p class="notice green">
+                <span class="green">说明：</span> 引用类型有很多种，Object(不是上面的数据类型,是所有引用类型的基础，其他所有类型都从Object继承了基本的行为), Array, Date, RegExp, Function, 基本包转类型等</p>
+            <p class="notice green"> Date属于引用类型中的Date类型，函数属于引用类型中的Function类型，但其数据结构，最终都基于Object类型 </p>
         </div>
 
         <div class="item">
             <h2>假如JS没有Date，如何自己实现</h2>
+            <p>由于Date的获取时间的方法是内置的，所以如果JS没有Date类型，不通过底层或第三方是无法直接通过JS直接拿到时间的（或者我不知道），但是在有获取时间方法的情况下，我们可以通过自定义构造函数来创建需要的对象。</p>
             <script>
-                window.onload = function() {
-                    var newDate = function () {
+                // function myDate() {
 
-                    }
-                }
+                // }
+                // myDate.prototype;
+                // window.onload = function () {
+                //     var d = new Date();
+                //     var d2 = Date();
+                //     for (var i in d) {
+                //         console.log(d[i]);
+                //     }
+                //     var a = {
+                //         data: '111',
+                //         toValue: function () {
+                //             return this.data;
+                //         }
+                //     }
+                //     console.log(a);
+                //     console.log(typeof d);
+                //     console.log(typeof d2);
+                // }
+            </script>
+            <script>
+                // window.onload = function () {
+                //     // console.log(Date.prototype);
+                //     // console.log(new Date());
+                // }
+                // function myDate () {
+                //     if(this instanceof myDate || new.target) {
+                //         console.log(1);
+                //     }
+                // }
+                // myDate();
+                // new myDate();
+
+                // for(var i in Date) {
+                //     console.log(i);
+                // }
+
             </script>
         </div>
+
+        <div class="item">
+            <h2>为日期扩充一个format函数</h2>
+            <div></div>
+        </div>
+
+        <div class="item">
+            <h2>继承Date实现一个Date2（有参数），新增format函数</h2>
+            <div>
+
+            </div>
+        </div>
+        <div class="item">
+            <h2>简述call和apply的异同点</h2>
+            <p>this引用的是函数据以执行的环境对象</p>
+            <p>每个函数都有两个非继承而来的方法，apply()和call()</p>
+            <p>都是在特定作用域中调用函数，等同于设置函数体内this对象的值</p>
+            <p>apply和call的区别是，传参时，除了this，后面的参数是一个数组还是必须单个传入</p>
+            <p>
+                function sum(num1, num2){return num1 + num2}
+                <br> function callSum(num1, num2){
+                <br> return sum.call(this, num1, num2);
+                <br> // return sum.apply(this, [num1, num2]);
+                <br> }
+            </p>
+        </div>
+        <div class="item">
+            <h2>为页面所有A标签添加click事件，在事件中alert当前A的索引（是body中的第几个A）</h2>
+            <div>
+                <a>a标签1</a>
+                <a>a标签2</a>
+                <a>a标签3</a>
+                <a>a标签4</a>
+            </div>
+        </div>
+
+        <div class="item insertCSS">
+            <h2>动态插入一段CSS到页面（原生写法）</h2>
+            <button onclick="addCSS()">
+                添加CSS
+            </button>
+            <p class="addCSS">
+
+            </p>
+        </div>
+
+        <div class="item">
+            <h2>for和for in有什么区别</h2>
+            <p>for循环</p>
+            <p>for in 是遍历数组或对象的可枚举属性</p>
+        </div>
+        <div class="item">
+            <h2>如何深度遍历一个对象</h2>
+            <div class="itearte-data">
+
+            </div>
+        </div>
     </div>
+    <script src="./data.js"></script>
     <script>
-        
+        window.onload = function () {
+
+            var alist = document.querySelectorAll('a');
+            for (var i = 0; i < alist.length; i++) {
+                (function (item) {
+                    alist[i].onclick = function () {
+                        alert(item + 1);
+                    }
+                }(i))
+            }
+        }
+
+        function addCSS() {
+            var link = document.createElement('link');
+            link.setAttribute('href', './other.css');
+            link.setAttribute('rel', 'stylesheet');
+            var head = document.querySelector('head');
+            head.appendChild(link);
+            document.querySelector('.addCSS').innerText = '新增CSS成功';
+        }
+
+        function iterateObj(id, obj) {
+            if(1){}
+            console.log(obj.id);
+            console.log(id);
+            console.log('xxxxxxxxxx');
+            if(obj.id === id) {
+                return obj.value;
+            }
+            
+            if(obj.children && obj.children.length) {
+                for(var i = 0; i < obj.children.length; i++) {
+                    return iterateObj(id, obj.children[i]);
+                }
+            }
+        }
+        console.log(iterateObj(112, dataObj));
     </script>
 </body>
+
 </html>
