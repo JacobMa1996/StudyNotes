@@ -16,7 +16,7 @@
             <p> undefined: Undefined </p>
             <p> null: Null 指向一个空对象的指针，故typeof null == object </p>
             <p> number: 整数和浮点数 </p>
-            <p> string: 16位Unicode字符组成的字符序列 </p>
+            <p> string: 16位, Unicode字符组成的字符序列 </p>
             <p> object: 对象 一组数据和功能的集合，其数据结构定义在堆区，引用变量在栈区，故也称为“引用类型” </p>
             <br>
             <p class="notice green">
@@ -121,24 +121,39 @@
         </div>
         <div class="item">
             <h2>如何深度遍历一个对象</h2>
-            <div class="itearte-data">
+            <div class="iterate-data">
 
             </div>
+        </div>
+        <div class="item">
+            <h2>将字符串"1,2;3"转化成纯数字数组</h2>
+            <div class="toNum"></div>
+        </div>
+        <div class="item">
+            <h2>window.onload是在什么时间点执行的</h2>
+            <p>在文档装载完成后会触发load事件。此时，在文档中的所有对象都在DOM中，所有图片，脚本，链接以及子框都完成了装载。 --MDN</p>
+        </div>
+        <div class="item">
+            <h2>如何在DOM完成时马上执行JS（等同jQuery的ready）</h2>
+
         </div>
     </div>
     <script src="./data.js"></script>
     <script>
-        window.onload = function () {
-
+        'use strict';
+        ready(function () {
             var alist = document.querySelectorAll('a');
-            for (var i = 0; i < alist.length; i++) {
+            for (var k = 0; k < alist.length; k++) {
                 (function (item) {
-                    alist[i].onclick = function () {
+                    alist[k].onclick = function () {
                         alert(item + 1);
                     }
-                }(i))
+                }(k))
             }
-        }
+
+            document.querySelector('.iterate-data').innerHTML = iterateObj;
+            document.querySelector('.toNum').innerHTML = toNum;
+        })
 
         function addCSS() {
             var link = document.createElement('link');
@@ -149,22 +164,73 @@
             document.querySelector('.addCSS').innerText = '新增CSS成功';
         }
 
+        //递归深度优先遍历对象
         function iterateObj(id, obj) {
-            if(1){}
-            console.log(obj.id);
-            console.log(id);
-            console.log('xxxxxxxxxx');
-            if(obj.id === id) {
+            if (obj.id === id) {
                 return obj.value;
             }
-            
-            if(obj.children && obj.children.length) {
-                for(var i = 0; i < obj.children.length; i++) {
-                    return iterateObj(id, obj.children[i]);
+            if (obj.children && obj.children.length) {
+                for (var i = 0; i < obj.children.length; i++) {
+                    var value = iterateObj(id, obj.children[i]); //不能直接返回，因为要继续循环
+                    if (value) { // 当不存在时，不返回，直接下一次循环
+                        return value;
+                    }
                 }
             }
         }
-        console.log(iterateObj(112, dataObj));
+        console.log(iterateObj(112, dataObj)); // 引自data.js
+        //递归深度优先遍历数组
+        function iterateArr(id, arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].id === id) {
+                    return arr[i].name;
+                }
+                if (arr[i].children && arr[i].children.length) {
+                    var name = iterateArr(id, arr[i].children);
+                    if (name) {
+                        return name;
+                    }
+                }
+            }
+        }
+        console.log(iterateArr(112, dataArr));
+
+        //字符串转换成纯数字数组
+        function toNum(str) {
+            var arr = str.split('');
+            var newArr = [];
+            for (var k = 0; k < arr.length; k++) {
+                if (Number(arr[k]) == arr[k]) {
+                    arr[k] = Number(arr[k]);
+                } else {
+                    arr.splice(k--, 1);
+                }
+            }
+            return arr;
+        }
+        console.log(toNum('1,2,;3'));
+
+        //ready函数
+        function ready(func) {
+            if (document.addEventListener) {
+                var callback = function () {
+                    document.addEventListener('DOMContentLoaded', callback, false);
+                    func();
+                }
+                document.addEventListener('DOMContentLoaded', callback, false);
+            }else if(document.attachEvent){ //兼容IE IE6/7/8需要用doscroll另外做兼容
+                document.onreadystatechange = function() {
+                    if(document.readyState == 'complete') {
+                        document.onreadystatechange = null;
+                        var callback = function () {
+                            document.detachEvent('onreadystatechange', callback, false);
+                            func();
+                        }
+                        document.attachEvent('onreadystatechange', callback, false);
+                    }
+                }
+            }
+        }
     </script>
 </body>
 
