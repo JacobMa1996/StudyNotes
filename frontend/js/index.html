@@ -135,7 +135,50 @@
         </div>
         <div class="item">
             <h2>如何在DOM完成时马上执行JS（等同jQuery的ready）</h2>
+            <div class="ready"></div>
+        </div>
+        <div class="item">
+            <h2>你了解的双向绑定机制有哪些</h2>
+            <p>1.Vue中的表单 使用v-model绑定在元素上。更新数据模型可以更新试图，用户输入的同时，也会更新数据模型。实现双向绑定。</p>
+            <p>2.AngularJS</p>
+        </div>
+        <div class="item">
+            <h2>最熟悉哪个框架，简述一下原理</h2>
 
+        </div>
+        <div class="item">
+            <h2>如何在Nodejs中发起一个http请求</h2>
+            <p>http模块的get、post等方法，回调中res参数为响应内容。</p>
+            <p>
+                <br> var http = require('http');
+                <br> var url = 'http://www.imooc.com';
+                <br> http.get(url,function(res) {
+                <br> var html = '';
+                <br> res.on('data',function(data) {
+                <br> html += data;
+                <br>});
+                <br>res.on('end',function () {
+                <br> console.log(html);//输出慕课网的html代码
+                <br> })
+                <br>}).on('error',function() {
+                <br>console.log('获取错误');
+                <br> });
+            </p>
+        </div>
+        <div class="item">
+            <h2>如何做到提交表单但不刷新页面</h2>
+            <p>隐藏的form表单target指向隐藏的iframe，手动触发submit事件</p>
+            <button class="submit" type="button">点击这个按钮</button>
+            <form style="display: none" method="post" name="myform" class="hide-form" action="/exercises/Benz.jpg" target="formTarget">
+                <input type="submit">
+            </form>
+            <iframe style="display: none" id="formTarget" name="formTarget" src="about:blank"></iframe>
+        </div>
+        <div class="item">
+            <h2>如何判断一个元素是否在可视区域</h2>
+            <p>
+                <img id="imgObj" src="../img/Benz.jpg" alt="">
+            </p>
         </div>
     </div>
     <script src="./data.js"></script>
@@ -153,6 +196,15 @@
 
             document.querySelector('.iterate-data').innerHTML = iterateObj;
             document.querySelector('.toNum').innerHTML = toNum;
+            document.querySelector('.ready').innerHTML = ready;
+
+            //提交form表单但不刷新页面
+            document.querySelector('button.submit').onclick = function () {
+                document.querySelector('form.hide-form').submit();
+            }
+
+            var imgObj = document.querySelector('#imgObj');
+            isVisable(imgObj);
         })
 
         function addCSS() {
@@ -179,6 +231,7 @@
             }
         }
         console.log(iterateObj(112, dataObj)); // 引自data.js
+
         //递归深度优先遍历数组
         function iterateArr(id, arr) {
             for (var i = 0; i < arr.length; i++) {
@@ -214,13 +267,13 @@
         function ready(func) {
             if (document.addEventListener) {
                 var callback = function () {
-                    document.addEventListener('DOMContentLoaded', callback, false);
+                    document.removeEventListener('DOMContentLoaded', callback, false);
                     func();
                 }
                 document.addEventListener('DOMContentLoaded', callback, false);
-            }else if(document.attachEvent){ //兼容IE IE6/7/8需要用doscroll另外做兼容
-                document.onreadystatechange = function() {
-                    if(document.readyState == 'complete') {
+            } else if (document.attachEvent) { //兼容IE8+ IE6/7/8需要用doscroll另外做兼容
+                document.onreadystatechange = function () {
+                    if (document.readyState == 'complete') {
                         document.onreadystatechange = null;
                         var callback = function () {
                             document.detachEvent('onreadystatechange', callback, false);
@@ -231,6 +284,19 @@
                 }
             }
         }
+
+        //判断元素出现在可视区域内
+        function isVisable(obj) {
+            //用getBoundingClientRect()方法比较元素距离视窗左上角的距离
+            window.onscroll = function () {
+                var eleTop = obj.getBoundingClientRect().top;
+                if (obj.getBoundingClientRect().top <= window.innerHeight) {
+                    console.log('visible');
+                }else {
+                    console.log('invisible');
+                }
+            }
+        } 
     </script>
 </body>
 
