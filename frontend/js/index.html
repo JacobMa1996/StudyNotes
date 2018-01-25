@@ -27,51 +27,69 @@
         <div class="item">
             <h2>假如JS没有Date，如何自己实现</h2>
             <p>由于Date的获取时间的方法是内置的，所以如果JS没有Date类型，不通过底层或第三方是无法直接通过JS直接拿到时间的（或者我不知道），但是在有获取时间方法的情况下，我们可以通过自定义构造函数来创建需要的对象。</p>
+            <p class="MyDate"></p>
             <script>
-                // function myDate() {
+                function MyDate() {
+                    if (this instanceof MyDate || new.target) {
+                        //如果调用了new 则返回一个Date实例
+                        this.date = new Date();
+                    } else {
+                        //否则 返回一个字符串
+                        return new Date();
+                    }
+                }
+                MyDate.prototype = {
+                    constructor: MyDate(),
+                    getDate: function () {
+                        return (new Date()).getDate();
+                    }
+                }
 
-                // }
-                // myDate.prototype;
-                // window.onload = function () {
-                //     var d = new Date();
-                //     var d2 = Date();
-                //     for (var i in d) {
-                //         console.log(d[i]);
-                //     }
-                //     var a = {
-                //         data: '111',
-                //         toValue: function () {
-                //             return this.data;
-                //         }
-                //     }
-                //     console.log(a);
-                //     console.log(typeof d);
-                //     console.log(typeof d2);
-                // }
+                var mydate = new MyDate();
+                console.log(mydate.getDate());
+                console.log(MyDate());
+
+
             </script>
             <script>
-                // window.onload = function () {
-                //     // console.log(Date.prototype);
-                //     // console.log(new Date());
-                // }
-                // function myDate () {
-                //     if(this instanceof myDate || new.target) {
-                //         console.log(1);
-                //     }
-                // }
-                // myDate();
-                // new myDate();
-
-                // for(var i in Date) {
-                //     console.log(i);
-                // }
-
             </script>
         </div>
 
         <div class="item">
             <h2>为日期扩充一个format函数</h2>
             <div></div>
+            <script>
+                Date.prototype.getFormatDate = function () {
+                    var date = null;
+                    if (arguments.length == 1) {
+                        date = arguments[0] ? new Date(arguments[0]) : new Date();
+                    } else if (arguments.length > 1) {
+                        console.log(Array.prototype.slice.call(arguments));
+                        date = new Date(Array.prototype.slice.call(arguments));
+                    } else {
+                        date = new Date();
+                    }
+                    console.info(date);
+                    var y = date.getFullYear(),
+                        mon = date.getMonth() + 1,
+                        d = date.getDate(),
+                        h = date.getHours(),
+                        min = date.getMinutes(),
+                        s = date.getSeconds();
+                    mon = mon > 9 ? mon : '0' + mon;
+                    d = d > 9 ? d : '0' + d;
+                    h = h > 9 ? h : '0' + h;
+                    min = min > 9 ? min : '0' + min;
+                    s = s > 9 ? s : '0' + s;
+                    return y + '-' + mon + '-' + d + ' ' + h + ':' + min + ':' + s;
+                }
+
+                var formatdate = new Date();
+                console.log(formatdate.getFormatDate(''));
+                console.log(formatdate.getFormatDate('December 17, 1995 03:24:00'));
+                console.log(formatdate.getFormatDate('1995-12-17T03:24:00'));
+                console.log(formatdate.getFormatDate(1995, 11, 17, 3, 24, 0));
+            </script>
         </div>
 
         <div class="item">
@@ -292,7 +310,7 @@
                 var eleTop = obj.getBoundingClientRect().top;
                 if (obj.getBoundingClientRect().top <= window.innerHeight) {
                     console.log('visible');
-                }else {
+                } else {
                     console.log('invisible');
                 }
             }
