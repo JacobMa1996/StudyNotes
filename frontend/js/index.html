@@ -61,15 +61,12 @@
             <script>
                 Date.prototype.getFormatDate = function () {
                     var date = null;
-                    if (arguments.length == 1) {
-                        date = arguments[0] ? new Date(arguments[0]) : new Date();
-                    } else if (arguments.length > 1) {
-                        console.log(Array.prototype.slice.call(arguments));
-                        date = new Date(Array.prototype.slice.call(arguments));
+                    if (arguments) {
+                        date = new Date(...arguments);
                     } else {
                         date = new Date();
                     }
-                    console.info(date);
+                    if (date == 'Invalid Date') return date;
                     var y = date.getFullYear(),
                         mon = date.getMonth() + 1,
                         d = date.getDate(),
@@ -95,7 +92,71 @@
         <div class="item">
             <h2>继承Date实现一个Date2（有参数），新增format函数</h2>
             <div>
+                <script>
+                    // function Date2() {
+                    //     Date.call(this, ...arguments);
+                    // }
 
+                    // function inherit(subType, superType) {
+                    //     function F() { }
+                    //     F.prototype = superType.prototype;
+                    //     subType.prototype = new F();
+                    //     subType.prototype.constructor = subType;
+                    // }
+                    // inherit(Date2, Date);
+                    // Date2.prototype.format = () => {
+                    //     console.log(this);
+                    // }
+
+                    // var date2 = new Date2(1995, 11, 17, 3, 24, 0);
+
+                </script>
+                <script>
+                    // 需要考虑polyfill情况
+                    Object.setPrototypeOf = Object.setPrototypeOf ||
+                        function (obj, proto) {
+                            obj.__proto__ = proto;
+
+                            return obj;
+                        };
+
+                    /**
+                     * 用了点技巧的继承，实际上返回的是Date对象
+                     */
+                    function MyDate() {
+                        // bind属于Function.prototype，接收的参数是：object, param1, params2...
+                        var dateInst = new (Function.prototype.bind.apply(Date, [Date].concat(Array.prototype.slice.call(arguments))))();
+
+                        // 更改原型指向，否则无法调用MyDate原型上的方法
+                        // ES6方案中，这里就是[[prototype]]这个隐式原型对象，在没有标准以前就是__proto__
+                        Object.setPrototypeOf(dateInst, MyDate.prototype);
+
+                        dateInst.abc = 1;
+
+                        return dateInst;
+                    }
+
+                    // 原型重新指回Date，否则根本无法算是继承
+                    Object.setPrototypeOf(MyDate.prototype, Date.prototype);
+
+                    MyDate.prototype.format = function () { //箭头函数在操作this,arguments和new时，避免使用
+                        let y = this.getFullYear(),
+                            mon = this.getMonth() + 1,
+                            d = this.getDate(),
+                            h = this.getHours(),
+                            min = this.getMinutes(),
+                            s = this.getSeconds();
+                        mon = mon > 9 ? mon : '0' + mon;
+                        d = d > 9 ? d : '0' + d;
+                        h = h > 9 ? h : '0' + h;
+                        min = min > 9 ? min : '0' + min;
+                        s = s > 9 ? s : '0' + s;
+                        return y + '-' + mon + '-' + d + ' ' + h + ':' + min + ':' + s;
+                    }
+
+                    let date = new MyDate(1995, 11, 17, 3, 24, 0);
+                    console.log(date.format()); // 1995-12-17 03:24:00
+                </script>
             </div>
         </div>
         <div class="item">
