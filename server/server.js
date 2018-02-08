@@ -10,15 +10,15 @@ console.log('localhost:2018')
 let server = http
     .createServer((req, res) => {
         let url = req.url
-        console.log(url)
         if (url == '/') {
-            fs.readFile('../index.html', (err, data) => {
+            fs.readFile(path.resolve(process.cwd(), 'views/index.html'), (err, data) => {
+                res.writeHead(200, { 'Content-Type': 'text/html' })
                 res.end(data)
                 return
             })
         }
 
-        if(/api\/./.test(url)) {
+        if(/api\/*/.test(url)) {
             let treeJSON = getDirTree()
             res.end(treeJSON)
         }
