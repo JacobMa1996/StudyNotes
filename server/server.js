@@ -19,8 +19,12 @@ let server = http
         }
 
         if(/api\/*/.test(url)) {
+            console.log(123)
             let treeJSON = getDirTree()
-            res.end(treeJSON)
+            console.log(treeJSON)
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(treeJSON))
+            return
         }
 
         router(req, res, url)
