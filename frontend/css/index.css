@@ -8,8 +8,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+    /* vertical-align: middle; */
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 /* img {
@@ -154,7 +155,7 @@ img {
 
 #ver-img img {
     height: 100px;
-    width: 150px
+    width: 150px;
 }
 
 #ver-img .ver-img{
@@ -162,7 +163,8 @@ img {
     border: 1px solid #999;
     height: 200px;
     width: 200px;
-    line-height: 200px
+    line-height: 200px;
+    /* vertical-align: middle; */
 }
 
 #ver-img .ver-img > img {
@@ -266,7 +268,7 @@ img {
     width: 200px;
     display: table-cell;
     vertical-align: middle;
-    text-align: center
+    text-align: center;
 }
 
 #text-center .multi-line-3 {
@@ -280,7 +282,7 @@ img {
 #text-center .multi-line-3 > div {
     line-height: 1.4em;
     vertical-align: middle;
-    display: inline-block
+    display: inline-block;
 }
 
 #clearfix .clearfix {

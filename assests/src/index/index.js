@@ -1,5 +1,4 @@
 $(function () {
-    console.log(10)
     Ajax('/apitree', null, function (res) {
         let root = res
         let treeHtml = getTreeHtml(root)
