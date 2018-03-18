@@ -4,6 +4,10 @@ $(function () {
         let treeHtml = getTreeHtml(root)
         $('body').append(treeHtml)
     })
+
+    AJAXNative('./apitree', null, function(res) {
+        console.log(res)
+    })
 })
 
 function getTreeHtml(root) {
@@ -23,13 +27,13 @@ function getTreeHtml(root) {
     return rootHTML
 }
 
-function Ajax(url, data, func_succ, func_err, method) {
+function Ajax(url, data, func_succ, func_err, type) {
 
     let options = {
         url: url,
         data: data,
         dataType: 'json',
-        method: 'get' || method,
+        type: 'get' || type,
         contentType: 'application/json; chaset=utf-8',
         success: (res) => {
             func_succ && func_succ(res)
@@ -45,7 +49,7 @@ function Ajax(url, data, func_succ, func_err, method) {
         Object.assign(options, {
             url: obj.url,
             data: obj.data,
-            method: 'get' || obj.method,
+            type: 'get' || obj.type,
             success: obj.success,
             err: obj.err,
         })
@@ -53,4 +57,16 @@ function Ajax(url, data, func_succ, func_err, method) {
 
 
     $.ajax(options)
+}
+
+function AJAXNative(url, data, func_succ, func_err, method) {
+
+    let XHR = new XMLHttpRequest;
+    XHR.open(method || 'get', url, true);
+    XHR.send(data);
+    XHR.onreadystatechange = function() {
+        if(XHR.readyState == 4 && XHR.status == 200) {
+            func_succ(XHR.responseText);
+        }
+    }
 }
