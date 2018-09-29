@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>choose</title>
+</head>
+
+<body>
+    <div class="">
+        <input class="input" type="text">
+    </div>
+    <div class="show">
+        
+    </div>
+    <script>
+        window.onload = () => {
+            let inputDOM = document.querySelector('.input')
+            let showDOM = document.querySelector('.show')
+            inputDOM.addEventListener('input', e => {
+                showDOM.innerHTML = ''
+                let showHTML = getShowHTML(e.target.value, data)
+                showDOM.append(showHTML)
+            })
+        }
+        
+        // 判断这条分支上有没有匹配到的
+        function isNeedBranch (item, keyword) {
+            let flag1 = false,
+                flag2 = false
+            if(item.txt.indexOf(keyword) > -1) {
+                flag1 = true
+            } else if(item.children && item.children.length) {
+                item.children.forEach(child => {
+                    if(isNeedBranch(child, keyword)) {
+                        flag2 = true
+                    }
+                })
+            }
+            return flag1 || flag2
+        }
+        // 给每个分支上有所匹配的设置isNeed
+        function setFlag (data, keyword) {
+            return data.map(item => {
+                item.isNeed = isNeedBranch(item, keyword)
+                if(item.children && item.children.length) {
+                    setFlag(item.children, keyword)
+                }
+                return item
+            })
+        }
+        // 过滤掉分支上isNeed为false的元素
+        function treeFilter (data) {
+            return data.filter((item, index) => {
+                if(item && item.children && item.children.length) {
+                    item.children = treeFilter(item.children)
+                }
+                return item.isNeed
+            })
+        }
+
+        function getShowHTML(val, data) {
+            let dataCopy = JSON.parse(JSON.stringify(data)) // 一个简单的deepCopy
+            let filterTree = treeFilter(setFlag(dataCopy, val))
+            return (filterTree && filterTree.length) ? getTreeHtml(filterTree) : ''
+        }
+
+        function getTreeHtml(tree) {
+            let rootHTML = document.createElement('ul')
+            rootHTML.style.id = 'root'
+            let search = (nodeHTML, nodeJSON) => {
+                nodeJSON.forEach(item => {
+                    // console.log('nodeHTML', nodeHTML)
+                    if(item.children && item.children.length) {
+                        let thisNode = document.createElement('li')
+                        let thisNodeUl = document.createElement('ul')
+                        thisNode.append(item.txt)
+                        thisNode.append(thisNodeUl)
+                        // console.log('thisNode.children', thisNode)
+                        search(thisNode.children[0], item.children)
+                        nodeHTML && nodeHTML.append(thisNode)
+                    } else {
+                        let li = document.createElement('li')
+                        li.append(item.txt)
+                        li.style.id = item.id
+                        nodeHTML && nodeHTML.append(li)
+                    }
+                })
+            }
+            search(rootHTML, tree)
+            return rootHTML
+        }
+
+        const data = [{
+            id: 1,
+            txt: '测试1',
+            children: [{
+                id: 11,
+                txt: '测试11',
+                children: [{
+                    id: 111,
+                    txt: '测试111',
+                    children: [{
+                        id: 1111,
+                        txt: '这里就不是',
+                        children: []
+                    }]
+                }]
+            }, {
+                id: 12,
+                txt: '测试12',
+                children: [{
+                    id: 121,
+                    txt: '测试121',
+                    children: [{
+                        id: 1211,
+                        txt: '测试1211',
+                        children: []
+                    }]
+                }]
+            }]
+        }, {
+            id: 2,
+            txt: '测试2',
+            children: [{
+                id: 21,
+                txt: '测试21'
+            }]
+        }]
+    </script>
+</body>
+
+</html>
