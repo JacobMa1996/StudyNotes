@@ -9,7 +9,10 @@
 </head>
 
 <body>
+    <span>完整的分类树</span>
+    <div class="data"></div>
     <div class="">
+        <div>请输入匹配文本</div>
         <input class="input" type="text">
     </div>
     <div class="show">
@@ -19,6 +22,8 @@
         window.onload = () => {
             let inputDOM = document.querySelector('.input')
             let showDOM = document.querySelector('.show')
+            let dataDOM = document.querySelector('.data')
+            dataDOM.append(getTreeHtml(data))
             inputDOM.addEventListener('input', e => {
                 showDOM.innerHTML = ''
                 let showHTML = getShowHTML(e.target.value, data)
