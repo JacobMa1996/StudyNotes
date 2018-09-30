@@ -62,6 +62,7 @@
         }
 
         function getShowHTML(val, data) {
+            if(!val) return ''
             let dataCopy = JSON.parse(JSON.stringify(data)) // 一个简单的deepCopy
             let filterTree = treeFilter(setFlag(dataCopy, val))
             return (filterTree && filterTree.length) ? getTreeHtml(filterTree) : ''
